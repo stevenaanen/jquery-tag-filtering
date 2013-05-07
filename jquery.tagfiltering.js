@@ -27,6 +27,9 @@
 				var target_tag = $(this).attr("data-tag");
 				var filtered_items = get_filtered_items(target_tag);
 				replace_items(filtered_items);
+
+				// update appearance
+				$(this).addClass("active");
 			});
 
 
