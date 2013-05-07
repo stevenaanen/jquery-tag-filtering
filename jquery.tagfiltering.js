@@ -1,3 +1,11 @@
+/*
+ * jQuery Tag Filtering 0.1.0
+ * http://www.appophetweb.nl
+ * https://github.com/stevenaanen/jquery-tag-filtering
+ * Copyright 2013, AppOpHetWeb
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+*/
 (function( $ ) {
 	$.fn.tagfiltering = function(options) {
 		// Create some defaults, extending them with any options that were provided
