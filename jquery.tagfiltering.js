@@ -9,6 +9,14 @@
 		var $data = list;
 		var $tags = this;
 
+		try {
+
+
+
+		}
+		catch (err) {
+			console.err("jQuery Tag Filtering failed: " + err);
+		}
 
 		return this;
 	};
