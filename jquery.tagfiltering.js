@@ -33,18 +33,15 @@
 			// actual filtering
 			function get_filtered_items(target_tag) {
 				if (!target_tag)			throw "no tag specified";
-				console.log(target_tag);
 
 				var filtered_items = [];
 
 				$items.clone().each(function() {
 					var tags = $(this).attr("data-tags").split(new RegExp("[,;] ?"));
-					console.log(tags);
 
 					// it has the tag, this must be my lucky day
 					if ($.inArray(target_tag, tags) != -1)
 						filtered_items.push(this.outerHTML);
-					console.log($.inArray(target_tag, tags));
 				});
 
 				return filtered_items;
