@@ -7,11 +7,18 @@
 
 		// constants
 		var $data = list;
-		var $tags = this;
+		var $tags = $(this).children();
 
 		try {
 			// precondition checks
 			if (!$data.length)		throw "no valid target list to filter";
+			if (!$tags.length)		throw "called on invalid element (should be html list of tags)"
+
+			$tags.click(function(event) {
+				event.preventDefault();
+
+				var target_tag = $(this).attr("data-tag");
+			});
 
 
 
