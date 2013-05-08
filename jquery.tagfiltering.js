@@ -44,7 +44,7 @@
 
 					// it has the tag, this must be my lucky day
 					if ($.inArray(target_tag, tags) != -1)
-						filtered_items.push(this.outerHTML);
+						filtered_items.push(this);
 				});
 
 				return filtered_items;
@@ -53,7 +53,12 @@
 
 			// hard replace with new resultset
 			function replace_items(new_items) {
-				$(settings.items).empty().append(new_items);
+				$(settings.items).empty();
+				console.log(new_items);
+				new_items.forEach(function() {
+					console.log("item " + this.outerHTML)
+					$(settings.items).append(this.outerHTML);
+				});
 			}
 
 		}
