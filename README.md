@@ -28,7 +28,8 @@ The actual tags are tagged themselves using the `data-tag` attribute, which is f
 ### JS
 Make sure you've loaded *jquery.tagfiltering.js* in your HTML before the actual script in which you call it, and after loading jQuery. I like to place my scripts file at the end of the body, and using an asynchronous loader for the plugins. You're free to choose though. After that, call the plugin, wrapped in a `$(document).ready(function { })`. This is the call with all posible options and defaults:
 	$("ul.tags").tagfiltering({
-		items: ".filter-items"
+		items: ".filter-items",
+		active_class: "active"		// css class used to indicate selected tags
 	});
 
 Changelog

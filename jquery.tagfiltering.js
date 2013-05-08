@@ -53,7 +53,6 @@
 						if (!_.contains(all_filtered_items, item))
 							all_filtered_items.push(item);
 					});
-// 					all_filtered_items = _.intersection(all_filtered_items, filtered_items);
 				});
 
 				return all_filtered_items;
