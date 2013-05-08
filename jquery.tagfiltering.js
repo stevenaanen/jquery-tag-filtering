@@ -49,7 +49,10 @@
 				$active_tags.each(function() {
 					var target_tag = $(this).attr("data-tag");
 					var filtered_items = get_filtered_items(target_tag);
-					all_filtered_items = _.union(all_filtered_items, filtered_items);
+					_.each(filtered_items, function(item) {
+						if (!_.contains(all_filtered_items, item)) all_filtered_items.push(item);
+					});
+// 					all_filtered_items = _.intersection(all_filtered_items, filtered_items);
 				});
 
 				return all_filtered_items;
