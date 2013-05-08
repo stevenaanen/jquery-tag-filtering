@@ -10,7 +10,8 @@
 	$.fn.tagfiltering = function(options) {
 		// Create some defaults, extending them with any options that were provided
 		var settings = $.extend({
-			items: ".filter-items"
+			items: ".filter-items",
+			active_class: "active"
 		}, options);
 
 		try {
@@ -24,16 +25,33 @@
 			$tags.click(function(event) {
 				event.preventDefault();
 
-				var target_tag = $(this).attr("data-tag");
-				var filtered_items = get_filtered_items(target_tag);
-				replace_items(filtered_items);
+				// decide what to do
+				if ($(this).hasClass(settings.active_class))
+					$(this).removeClass(settings.active_class);
+				else
+					$(this).addClass(settings.active_class);
 
 				// update appearance
-				$(this).addClass("active");
+				replace_items(get_all_filtered_items());
 			});
 
 
-			// actual filtering
+			// find all items for all currently active tags
+			function get_all_filtered_items() {
+				var $active_tags = $tags.filter("." + settings.active_class);
+
+				var all_filtered_items = [];
+
+				$active_tags.each(function() {
+					var target_tag = $(this).attr("data-tag");
+					var filtered_items = get_filtered_items(target_tag);
+					all_filtered_items = _.union(all_filtered_items, filtered_items);
+				});
+
+				return all_filtered_items;
+			}
+
+			// find all items for one tag
 			function get_filtered_items(target_tag) {
 				if (!target_tag)			throw "no tag specified";
 
@@ -54,7 +72,7 @@
 			// hard replace with new resultset
 			function replace_items(new_items) {
 				$(settings.items).empty();
-				new_items.forEach(function(item) {
+				_.each(new_items, function(item) {
 					$(settings.items).append(item.outerHTML);
 				});
 			}
