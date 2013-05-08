@@ -50,7 +50,8 @@
 					var target_tag = $(this).attr("data-tag");
 					var filtered_items = get_filtered_items(target_tag);
 					_.each(filtered_items, function(item) {
-						if (!_.contains(all_filtered_items, item)) all_filtered_items.push(item);
+						if (!_.contains(all_filtered_items, item))
+							all_filtered_items.push(item);
 					});
 // 					all_filtered_items = _.intersection(all_filtered_items, filtered_items);
 				});
@@ -69,7 +70,7 @@
 
 					// it has the tag, this must be my lucky day
 					if ($.inArray(target_tag, tags) != -1)
-						filtered_items.push(this);
+						filtered_items.push(this.outerHTML);
 				});
 
 				return filtered_items;
@@ -80,7 +81,7 @@
 			function replace_items(new_items) {
 				$(settings.items).empty();
 				_.each(new_items, function(item) {
-					$(settings.items).append(item.outerHTML);
+					$(settings.items).append(item);
 				});
 			}
 
