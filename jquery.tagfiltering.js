@@ -54,10 +54,8 @@
 			// hard replace with new resultset
 			function replace_items(new_items) {
 				$(settings.items).empty();
-				console.log(new_items);
-				new_items.forEach(function() {
-					console.log("item " + this.outerHTML)
-					$(settings.items).append(this.outerHTML);
+				new_items.forEach(function(item) {
+					$(settings.items).append(item.outerHTML);
 				});
 			}
 
