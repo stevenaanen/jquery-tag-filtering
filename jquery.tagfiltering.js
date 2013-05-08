@@ -40,6 +40,10 @@
 			function get_all_filtered_items() {
 				var $active_tags = $tags.filter("." + settings.active_class);
 
+				// no tags selected
+				if (!$active_tags.length)
+					return $items.toArray();
+
 				var all_filtered_items = [];
 
 				$active_tags.each(function() {
