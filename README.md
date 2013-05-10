@@ -9,6 +9,7 @@ Usage
 ### HTML
 
 The filtering plugin works on two plain HTML lists; one for the tags, and one for the items to filter. The markup could look like this:
+
 	<ul class="tags">
 		<li data-tag="foobar"><a href="#">Foobar</a></li>
 		<li data-tag="unicorn"><a href="#">Unicorns</a></li>
@@ -26,6 +27,7 @@ The actual tags are tagged themselves using the `data-tag` attribute, which is f
 
 ### JS
 Make sure you've loaded jQuery, Underscore.js, and then *jquery.tagfiltering.js* in your HTML before the plugin call. I personally like to place my scripts file at the end of the body, and using an asynchronous loader for the plugins. You're free to choose though. Call the plugin wrapped in a `$(document).ready(function { })`. This is a sample of the call with all posible options and defaults:
+
 	$("ul.tags").tagfiltering({
 		items: ".filter-items",
 		active_class: "active"		// css class used to indicate selected tags
@@ -33,10 +35,15 @@ Make sure you've loaded jQuery, Underscore.js, and then *jquery.tagfiltering.js*
 
 Changelog
 ---------
+### v0.2.1
+- fixed readme bugs
+- tree restructure to separate demo
+
 ### v0.2.0
 - filtering with multiple tags (disjunctive)
 - included demo page
 - variable 'active' tag class
+
 ### v0.1.0
 - added filtering based on single tag
 - various other fixes
