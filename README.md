@@ -33,5 +33,16 @@ Make sure you've loaded jQuery, Underscore.js, and then *jquery.tagfiltering.js*
 
 Changelog
 ---------
+### v0.2.0
+- filtering with multiple tags (disjunctive)
+- included demo page
+- variable 'active' tag class
 ### v0.1.0
 - added filtering based on single tag
+- various other fixes
+
+Roadmap
+-------
+To add at some point in the future:
+- jQuery Quicksand support for nice reorder effects
+- optional conjunctive filtering
