@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQuery Tag Filtering Demo</title>
+		<style>
+			body { background-color: #eee; }
+			a { text-decoration: none; }
+			ul.tags { list-style-type: none; }
+			ul.tags li {
+			  display: inline-block;
+			  margin-right: 4px;
+			  margin-bottom: 7px;
+			}
+			.facet {
+			  -webkit-border-radius: 5px;
+			  -moz-border-radius: 5px;
+			  -ms-border-radius: 5px;
+			  -o-border-radius: 5px;
+			  border-radius: 5px;
+			  background-color: white;
+			  border: 1px solid #b9b9b9;
+			  font-weight: bold;
+			  padding: 5px 9px;
+			  color: #9b9b9b;
+			  vertical-align: middle;
+			}
+			.facet:hover {
+			  background-color: #e7e7e7;
+			  color: #585858;
+			}
+			.active .facet {
+			  background-color: #57595b;
+			  color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Hello</h1>
+		<p>This is a really simple demo of how to use this plugin.</p>
+
+		<h2>These are tags:</h2>
+		<ul class="tags">
+			<li data-tag="foobar"><a class="facet" href="#">Foobar</a></li>
+			<li data-tag="unicorn"><a class="facet" href="#">Unicorns</a></li>
+		</ul>
+
+		<h2>These are items to filter:</h2>
+		<ul class="filter-items">
+			<li data-tags="unicorn">Fancy unicorn</li>
+			<li data-tags="bash">Lorum</li>
+			<li data-tags="bash">Ipsum</li>
+			<li data-tags="bash, foobar">Foobar thing</li>
+			<li data-tags="bash, unicorn, foobar">Several foobar unicorns</li>
+		</ul>
+
+		<a href="https://github.com/stevenaanen/jquery-tag-filtering">Fork/star on GitHub</a>
+		<script src="jquery-1.9.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script src="jquery.tagfiltering.js"></script>
+		<script>
+			$("ul.tags").tagfiltering();
+		</script>
+	</body>
+</html>

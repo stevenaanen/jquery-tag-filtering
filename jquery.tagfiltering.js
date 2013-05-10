@@ -1,5 +1,5 @@
 /*
- * jQuery Tag Filtering 0.1.0
+ * jQuery Tag Filtering 0.2.0
  * http://www.appophetweb.nl
  * https://github.com/stevenaanen/jquery-tag-filtering
  * Copyright 2013, AppOpHetWeb
@@ -10,7 +10,8 @@
 	$.fn.tagfiltering = function(options) {
 		// Create some defaults, extending them with any options that were provided
 		var settings = $.extend({
-			items: ".filter-items"
+			items: ".filter-items",
+			active_class: "active"
 		}, options);
 
 		try {
@@ -24,13 +25,40 @@
 			$tags.click(function(event) {
 				event.preventDefault();
 
-				var target_tag = $(this).attr("data-tag");
-				var filtered_items = get_filtered_items(target_tag);
-				replace_items(filtered_items);
+				// decide what to do
+				if ($(this).hasClass(settings.active_class))
+					$(this).removeClass(settings.active_class);
+				else
+					$(this).addClass(settings.active_class);
+
+				// update appearance
+				replace_items(get_all_filtered_items());
 			});
 
 
-			// actual filtering
+			// find all items for all currently active tags
+			function get_all_filtered_items() {
+				var $active_tags = $tags.filter("." + settings.active_class);
+
+				// no tags selected
+				if (!$active_tags.length)
+					return $items.toArray();
+
+				var all_filtered_items = [];
+
+				$active_tags.each(function() {
+					var target_tag = $(this).attr("data-tag");
+					var filtered_items = get_filtered_items(target_tag);
+					_.each(filtered_items, function(item) {
+						if (!_.contains(all_filtered_items, item))
+							all_filtered_items.push(item);
+					});
+				});
+
+				return all_filtered_items;
+			}
+
+			// find all items for one tag
 			function get_filtered_items(target_tag) {
 				if (!target_tag)			throw "no tag specified";
 
@@ -50,7 +78,10 @@
 
 			// hard replace with new resultset
 			function replace_items(new_items) {
-				$(settings.items).empty().append(new_items);
+				$(settings.items).empty();
+				_.each(new_items, function(item) {
+					$(settings.items).append(item);
+				});
 			}
 
 		}
