@@ -46,21 +46,21 @@
 
 		<h2>These are items to filter:</h2>
 		<ul class="filter-items">
-			<li data-tags="unicorn">Fancy unicorn</li>
-			<li data-tags="bash">Lorum</li>
-			<li data-tags="bash">Ipsum</li>
-			<li data-tags="bash, foobar">Foobar thing</li>
-			<li data-tags="bash, unicorn, foobar">Several foobar unicorns</li>
+			<li data-id="1" data-tags="unicorn">Fancy unicorn</li>
+			<li data-id="2" data-tags="bash">Lorum</li>
+			<li data-id="3" data-tags="bash">Ipsum</li>
+			<li data-id="4" data-tags="bash, foobar">Foobar thing</li>
+			<li data-id="5" data-tags="bash, unicorn, foobar">Several foobar unicorns</li>
 		</ul>
 
 		<a href="https://github.com/stevenaanen/jquery-tag-filtering">Fork/star on GitHub</a>
 		<script src="jquery-1.9.1.min.js"></script>
 		<script src="underscore-min.js"></script>
-		<script src="jquery.quicksand.min.js"></script>
+		<script src="jquery.quicksand.js"></script>
 		<script src="../jquery.tagfiltering.js"></script>
 		<script>
 			$("ul.tags").tagfiltering({
-				quicksand: false
+				quicksand: true
 			});
 		</script>
 	</body>
