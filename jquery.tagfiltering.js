@@ -93,12 +93,16 @@
 					new_list += "</ul>";
 
 					// get old list and append after + cleanup
-					$("#old-filter-items").remove();
-					var $old_list = $(settings.items).length ? $(settings.items) : $("#new-filter-items");
-					$old_list.attr("id", "old-filter-items").after(new_list);
+// 					$("#old-filter-items").remove();
+					$("#new-filter-items").remove();
+// 					var $old_list = $(settings.items).length ? $(settings.items) : $("#new-filter-items");
+					var $old_list = $(settings.items);
+// 					$old_list.attr("id", "old-filter-items").after(new_list);
+					$old_list.after(new_list);
 
 					// transition
-					$old_list.quicksand($("#new-filter-items li"), {
+					$(settings.items).quicksand($("#new-filter-items li"), {
+						useScaling: true
 // 						attribute: function(v) {
 // 							return $(v).text();
 // 						}
