@@ -11,7 +11,8 @@
 		// Create some defaults, extending them with any options that were provided
 		var settings = $.extend({
 			items: ".filter-items",
-			active_class: "active"
+			active_class: "active",
+			quicksand: false
 		}, options);
 
 		try {
@@ -41,8 +42,13 @@
 				var $active_tags = $tags.filter("." + settings.active_class);
 
 				// no tags selected
-				if (!$active_tags.length)
-					return $items.toArray();
+				if (!$active_tags.length) {
+					var item_array = [];
+					_.each($items.toArray(), function(item) {
+						item_array.push(item.outerHTML);
+					});
+					return item_array;
+				}
 
 				var all_filtered_items = [];
 
@@ -78,10 +84,27 @@
 
 			// hard replace with new resultset
 			function replace_items(new_items) {
-				$(settings.items).empty();
-				_.each(new_items, function(item) {
-					$(settings.items).append(item);
-				});
+				if (settings.quicksand) {
+					// make new list with items
+					var new_list = "<ul class=\"new-filter-items\">";
+					_.each(new_items, function(item) {
+						new_list += item;
+					});
+					new_list += "</ul>";
+					$(settings.items).after(new_list);
+
+					// transition
+// 					$(settings.items).quicksand($(new_items), {
+// 						attribute: function(v) {
+// 							return $(v).text();
+// 						}
+// 					});
+				} else {
+					$(settings.items).empty();
+					_.each(new_items, function(item) {
+						$(settings.items).append(item);
+					});
+				}
 			}
 
 		}
