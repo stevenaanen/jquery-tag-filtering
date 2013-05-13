@@ -1,5 +1,5 @@
 /*
- * jQuery Tag Filtering 0.2.1
+ * jQuery Tag Filtering 0.3.0
  * http://www.appophetweb.nl
  * https://github.com/stevenaanen/jquery-tag-filtering
  * Copyright 2013, AppOpHetWeb
@@ -11,7 +11,8 @@
 		// Create some defaults, extending them with any options that were provided
 		var settings = $.extend({
 			items: ".filter-items",
-			active_class: "active"
+			active_class: "active",
+			quicksand: false
 		}, options);
 
 		try {
@@ -41,8 +42,13 @@
 				var $active_tags = $tags.filter("." + settings.active_class);
 
 				// no tags selected
-				if (!$active_tags.length)
-					return $items.toArray();
+				if (!$active_tags.length) {
+					var item_array = [];
+					_.each($items.toArray(), function(item) {
+						item_array.push(item.outerHTML);
+					});
+					return item_array;
+				}
 
 				var all_filtered_items = [];
 
@@ -78,10 +84,34 @@
 
 			// hard replace with new resultset
 			function replace_items(new_items) {
-				$(settings.items).empty();
-				_.each(new_items, function(item) {
-					$(settings.items).append(item);
-				});
+				if (settings.quicksand) {
+					// prepare a list for new data
+					var $new_data = $("#new-filter-items");
+					if (!$new_data.length) {
+						var new_list = "<ul id=\"new-filter-items\"></ul>";
+						$(settings.items).after(new_list);
+						$new_data = $("#new-filter-items").hide();
+					} else $new_data.empty();
+
+					// put data
+					_.each(new_items, function(item) {
+						$new_data.append(item);
+					});
+
+					// transition
+					$(settings.items).quicksand($("#new-filter-items li"), {
+						attribute: function(v) {
+							console.log($(v).text());
+							return $(v).text();
+						},
+// 						useScaling: true
+					});
+				} else {
+					$(settings.items).empty();
+					_.each(new_items, function(item) {
+						$(settings.items).append(item);
+					});
+				}
 			}
 
 		}
