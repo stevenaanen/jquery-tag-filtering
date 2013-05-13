@@ -85,27 +85,26 @@
 			// hard replace with new resultset
 			function replace_items(new_items) {
 				if (settings.quicksand) {
-					// make new list with items
-					var new_list = "<ul id=\"new-filter-items\">";
-					_.each(new_items, function(item) {
-						new_list += item;
-					});
-					new_list += "</ul>";
+					// prepare a list for new data
+					var $new_data = $("#new-filter-items");
+					if (!$new_data.length) {
+						var new_list = "<ul id=\"new-filter-items\"></ul>";
+						$(settings.items).after(new_list);
+						$new_data = $("#new-filter-items").hide();
+					} else $new_data.empty();
 
-					// get old list and append after + cleanup
-// 					$("#old-filter-items").remove();
-					$("#new-filter-items").remove();
-// 					var $old_list = $(settings.items).length ? $(settings.items) : $("#new-filter-items");
-					var $old_list = $(settings.items);
-// 					$old_list.attr("id", "old-filter-items").after(new_list);
-					$old_list.after(new_list);
+					// put data
+					_.each(new_items, function(item) {
+						$new_data.append(item);
+					});
 
 					// transition
 					$(settings.items).quicksand($("#new-filter-items li"), {
-						useScaling: true
-// 						attribute: function(v) {
-// 							return $(v).text();
-// 						}
+						attribute: function(v) {
+							console.log($(v).text());
+							return $(v).text();
+						},
+// 						useScaling: true
 					});
 				} else {
 					$(settings.items).empty();

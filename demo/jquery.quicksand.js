@@ -1,6 +1,6 @@
 /*
 
-Quicksand 1.3; custom fix for depricated $.browser variable
+Quicksand 1.3; 7103060e447c7e9b8ab1606420ddec9340ca5ee4 from https://github.com/awshout/quicksand (jQuery 1.9 compatibility)
 
 Reorder and filter items with a nice shuffling animation.
 
@@ -38,8 +38,8 @@ Github site: http://github.com/razorjack/quicksand
     $.extend(options, customOptions);
 
     // Got IE and want scaling effect? Kiss my ass.
-    if ((typeof ($.fn.scale) == 'undefined')) {
-//       options.useScaling = false;
+    if (navigator.userAgent.match(/msie/i) || (typeof ($.fn.scale) == 'undefined')) {
+      options.useScaling = false;
     }
 
     var callbackFunction;
@@ -71,7 +71,7 @@ Github site: http://github.com/razorjack/quicksand
       var width = $($source).innerWidth(); // need for the responsive design
 
       // Replace the collection and quit if IE6
-      if (!options.useScaling) {
+      if (navigator.userAgent.match(/msie/i) && navigator.userAgent.match(/6/)) {
         $sourceParent.html('').append($collection);
         return;
       }
