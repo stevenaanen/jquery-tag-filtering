@@ -31,10 +31,14 @@ Make sure you've loaded jQuery, Underscore.js, and then *jquery.tagfiltering.js*
 	$("ul.tags").tagfiltering({
 		items: ".filter-items",
 		active_class: "active"		// css class used to indicate selected tags
+		quicksand: false			// enables reorder animations using Quicksand (required import of Quicksand plugin before Tag Filtering)
 	});
 
 Changelog
 ---------
+### v0.3.0
+- added support for Quicksand animations
+
 ### v0.2.1
 - fixed readme bugs
 - tree restructure to separate demo
@@ -51,5 +55,5 @@ Changelog
 Roadmap
 -------
 To add at some point in the future:
-- jQuery Quicksand support for nice reorder effects
 - optional conjunctive filtering
+- jQuery Quicksand settings override

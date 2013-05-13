@@ -1,5 +1,5 @@
 /*
- * jQuery Tag Filtering 0.2.1
+ * jQuery Tag Filtering 0.3.0
  * http://www.appophetweb.nl
  * https://github.com/stevenaanen/jquery-tag-filtering
  * Copyright 2013, AppOpHetWeb
